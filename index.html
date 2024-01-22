@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boilerplate Code</title>
+    <style>
+        .form-input{
+            text-align: center;
+            margin: 170px 0px 0px 200px;
+            border: 2px solid cyan;
+            width: 400px;
+            height: 100%;
+            background-color: black;
+            color: aqua;
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            border-radius: 5px;
+        }
+
+        .output{
+            border: 1px solid cyan;
+            padding: 10px;
+            width: 100%;
+           
+            color: rgb(20, 19, 19);
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    // Code goes here
+
+    
+    function BirthdayCard(){
+      
+        const [name, setName] = React.useState("")
+        const [message, setMessage] = React.useState("")
+        const [bgColor, setBgColor]= React.useState("red")
+
+        function handlechange(event){
+            setName(event.target.value)
+        }
+
+        function handlemessage(event){
+            setMessage(event.target.value)
+        }
+
+        React.useEffect(()=>{
+            const color =  name.length>5 ? "red" : "white";
+            setBgColor(color)
+        },[name])
+
+        return(
+            <div className="form-input">
+                <p className="output" style={{background:bgColor}}>{`Happy Birthday, ${name} ${message}`}</p>
+                <br/>
+                <label for="">Name </label>
+                <input 
+                    
+                    type="name"
+                    placeholder="Name"
+                    
+                    onChange={handlechange}/>
+                
+                <br/>
+                <br/>
+
+                <label for="">Message </label>
+                <input 
+                    
+                    type="message"
+                    placeholder="Message"
+                   
+                    onChange={handlemessage}/>
+                
+            </div>
+        )
+    }
+
+    
+
+    
+    ReactDOM.createRoot(document.getElementById('root')).render(<BirthdayCard/>)
+  </script>
+</html>
